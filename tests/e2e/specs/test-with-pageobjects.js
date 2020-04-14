@@ -17,8 +17,6 @@ module.exports = {
     app.assert.elementCount('@logo', 1)
     app.expect.section('@welcome').to.be.visible
     app.expect.section('@headline').text.to.match(/^Welcome to Your Vue\.js (.*)App, Dom!$/)
-
-    browser.end()
   },
 
   'verify if string "e2e-nightwatch" is within the cli plugin links': (browser) => {

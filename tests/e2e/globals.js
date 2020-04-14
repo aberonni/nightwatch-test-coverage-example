@@ -6,6 +6,11 @@
 //   https://nightwatchjs.org/gettingstarted/configuration/#test-globals
 //
 ///////////////////////////////////////////////////////////////////////////////////
+const path = require('path');
+const { createReporter } = require('istanbul-api')
+const { createCoverageMap } = require('istanbul-lib-coverage')
+
+const coverageMap = createCoverageMap({});
 
 module.exports = {
   // this controls whether to abort the test execution when an assertion failed and skip the rest
@@ -73,14 +78,13 @@ module.exports = {
   /**
    * executed after every test suite has ended
    */
-  /*
-  afterEach(browser, cb) {
-    browser.perform(function() {
-      //console.log('global afterEach')
-      cb();
+  afterEach(browser, done) {
+    browser.collectCoverage((data) => {
+      coverageMap.merge(data);
+      browser.end();
+      done();
     });
   },
-  */
 
   /**
    * executed after the test run has finished
@@ -96,9 +100,11 @@ module.exports = {
   // Global reporter
   //  - define your own custom reporter
   /////////////////////////////////////////////////////////////////
-  /*
-  reporter(results, cb) {
-    cb();
+  reporter(results, done) {
+    const reporter = createReporter();
+    reporter.dir = path.join(process.cwd(), 'tests', 'e2e', 'coverage');
+    reporter.addAll(['html', 'json']);
+    reporter.write(coverageMap);
+    done();
   }
-   */
 }
