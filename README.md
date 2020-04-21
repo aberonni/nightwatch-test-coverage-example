@@ -11,5 +11,3 @@ yarn
 yarn test:e2e
 yarn test:coverage
 ```
-
-The relevant changes that enabled the coverage checking are in [this commit](https://github.com/aberonni/nightwatch-test-coverage-example/commit/dcbf3cc55aa1e6aebf7ef00ee9679f10ae48e167)
