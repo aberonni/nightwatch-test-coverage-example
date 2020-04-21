@@ -5369,6 +5369,14 @@ nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
 
+nightwatch-coverage@^1.0.0:
+  version "1.0.0"
+  resolved "https://artifactory.booking.com:443/api/npm/npm/nightwatch-coverage/-/nightwatch-coverage-1.0.0.tgz#2e50ba25d4b4af8b9eee89019a1adef2d2b2ede5"
+  integrity sha1-LlC6JdS0r4ue7okBmhre8tKy7eU=
+  dependencies:
+    istanbul-api "^2.1.6"
+    istanbul-lib-coverage "^3.0.0"
+
 nightwatch@^1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/nightwatch/-/nightwatch-1.3.4.tgz#9d3a2b9b104a77591484848db0ff1c0c5dca1579"

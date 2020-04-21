@@ -7,12 +7,14 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////
 const path = require('path');
-const { createReporter } = require('istanbul-api')
-const { createCoverageMap } = require('istanbul-lib-coverage')
+const { createCoverageReporter } = require('nightwatch-coverage');
 
-const coverageMap = createCoverageMap({});
+const coverageReporter = createCoverageReporter({
+    coverageDirectory: path.join(process.cwd(), 'tests/e2e/coverage'),
+});
 
 module.exports = {
+  coverageReporter,
   // this controls whether to abort the test execution when an assertion failed and skip the rest
   // it's being used in waitFor commands and expect assertions
   abortOnAssertionFailure: true,
@@ -79,32 +81,26 @@ module.exports = {
    * executed after every test suite has ended
    */
   afterEach(browser, done) {
-    browser.collectCoverage((data) => {
-      coverageMap.merge(data);
-      browser.end();
-      done();
+    browser.collectCoverage(() => {
+      browser.end(done);
     });
   },
 
   /**
    * executed after the test run has finished
    */
-  /*
   after(cb) {
-    //console.log('global after')
+    coverageReporter.save();
     cb();
   },
-  */
 
   /////////////////////////////////////////////////////////////////
   // Global reporter
   //  - define your own custom reporter
   /////////////////////////////////////////////////////////////////
-  reporter(results, done) {
-    const reporter = createReporter();
-    reporter.dir = path.join(process.cwd(), 'tests', 'e2e', 'coverage');
-    reporter.addAll(['html', 'json']);
-    reporter.write(coverageMap);
-    done();
+  /*
+  reporter(results, cb) {
+    cb();
   }
+  */
 }
