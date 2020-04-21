@@ -24,8 +24,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "geckodriver": "^1.19.1",
-    "istanbul-api": "^2.1.6",
-    "istanbul-lib-coverage": "^3.0.0",
+    "nightwatch-coverage": "^1.0.0",
     "nyc": "^15.0.1",
     "vue-template-compiler": "^2.6.11"
   }
